@@ -51,6 +51,16 @@ git clone https://github.com/russelleNVy/three-man-team.git .claude/skills/three
 cd .claude/skills/three-man-team && ./setup
 ```
 
+### Copy the files into your project
+
+```bash
+# Pick a template — named personas (recommended) or blank slate
+cp -r ~/.claude/skills/three-man-team/templates/project-folder/* /path/to/your/project/
+
+# Copy the handoff files
+cp ~/.claude/skills/three-man-team/handoff/* /path/to/your/project/
+```
+
 ### Start your first session
 
 Copy this into your Claude Code session:
@@ -113,8 +123,10 @@ See `docs/token-optimization.md` for the full discipline.
 
 ## Templates
 
-- `templates/project-folder/` — Named personas (Arch, Bob, Richard) ready to use
-- `templates/generic/` — Clean slate for any stack
+- `templates/project-folder/` — **Start here.** Named personas (Arch, Bob, Richard), fully written and ready to use. Customize the Who You Are sections and rename to fit your team.
+- `templates/generic/` — Blank slate with `[CUSTOMIZE]` placeholders. Use this if you want to build your own personas from scratch or install globally across all projects.
+
+See `docs/customizing-your-team.md` for the full walkthrough.
 
 ---
 
