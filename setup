@@ -1,0 +1,53 @@
+#!/bin/bash
+# Three Man Team setup script
+
+echo ""
+echo "========================================="
+echo "  Three Man Team"
+echo "========================================="
+echo ""
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+GLOBAL_CLAUDE="$HOME/.claude"
+GLOBAL_CLAUDE_MD="$GLOBAL_CLAUDE/CLAUDE.md"
+
+# Create global skills directory if needed
+mkdir -p "$GLOBAL_CLAUDE/skills"
+
+# Check for Claude Code
+if command -v claude &> /dev/null; then
+  echo "✓ Claude Code detected"
+else
+  echo "  Claude Code not found — install from https://claude.ai/code for slash command support"
+fi
+
+echo ""
+echo "Three Man Team is ready."
+echo ""
+echo "-----------------------------------------"
+echo "  Add this to your CLAUDE.md to activate:"
+echo "-----------------------------------------"
+echo ""
+
+# Check if global CLAUDE.md exists and already has three-man-team
+if [ -f "$GLOBAL_CLAUDE_MD" ] && grep -q "three-man-team" "$GLOBAL_CLAUDE_MD" 2>/dev/null; then
+  echo "  (Already configured in $GLOBAL_CLAUDE_MD)"
+else
+  echo "  ## Three Man Team"
+  echo "  Available agents: /architect, /builder, /reviewer"
+  echo "  Token rules always active — see ~/.claude/skills/three-man-team/CLAUDE.md"
+  echo ""
+  echo "  Add to: $GLOBAL_CLAUDE_MD (global) or your project's CLAUDE.md (per-project)"
+fi
+
+echo ""
+echo "-----------------------------------------"
+echo "  To start your first session:"
+echo "-----------------------------------------"
+echo ""
+echo '  You are the Architect on this project.'
+echo '  Read CLAUDE.md, then ARCHITECT.md.'
+echo '  Report project status in one paragraph, then wait for me.'
+echo ""
+echo "  See examples/session-start.md for more prompts."
+echo ""

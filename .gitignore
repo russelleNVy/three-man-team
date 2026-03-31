@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+
+# Claude Code local settings (machine-specific)
+.claude/settings.local.json
+
+# User's team config — may contain production URLs and deploy targets
+config/team.yml
+
+# Internal build doc
+three-man-team-build-brief.md
