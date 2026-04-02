@@ -41,3 +41,14 @@ Copy the `agents/` directory and `CLAUDE.md` into your project root.
 - Claude Code CLI (for slash command support)
 - Git
 - Any agent supporting CLAUDE.md / SKILL.md context (for other tools)
+
+## Critical: Always Run Builder and Reviewer in the Foreground
+
+**Do not run Builder or Reviewer as background agents.**
+
+Background agents cannot receive tool approval prompts. The first time Builder tries to
+write a file, it will stall with nobody to approve it. If Builder or Reviewer seems to
+never run or stops silently — this is why.
+
+When using the Agent tool: leave `run_in_background` unset (defaults to foreground).
+When using manual paste: the fresh conversation is inherently foreground.

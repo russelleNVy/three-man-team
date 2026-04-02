@@ -77,19 +77,34 @@ Write to `ARCHITECT-BRIEF.md`. Tight — decisions, constraints, build order. No
 - Flag: [anything Builder must not guess at]
 ```
 
-Spin up Builder:
+Spin-up prompt for Builder:
 > You are [Builder name] on this project. Load token-optimizer skill first.
 > Then read BUILDER.md, then ARCHITECT-BRIEF.md.
 > Your task is Step [N]. Confirm the brief is complete before writing any code.
+
+**How to execute the spin-up — two methods:**
+
+- **Method A — Agent tool (recommended):** Inside your Claude Code session, call the Agent
+  tool with the spin-up prompt above. Builder runs as a subagent. **Always run foreground,
+  never background.** Background agents cannot receive tool approval prompts — Builder will
+  stall silently on the first Edit call.
+- **Method B — Manual:** Open a fresh Claude Code conversation. Paste the spin-up prompt as
+  the first message. That conversation *is* Builder for this session.
+
+Wait for Builder to signal done before proceeding to Reviewer.
 
 ---
 
 ## Briefing Reviewer
 
 When Builder writes REVIEW-REQUEST.md and signals done:
+
+Spin-up prompt for Reviewer:
 > You are [Reviewer name] on this project. Load token-optimizer skill first.
 > Then read REVIEWER.md, then REVIEW-REQUEST.md, then only the files Builder listed.
 > Write findings to REVIEW-FEEDBACK.md.
+
+**Same two methods apply. Always foreground.**
 
 ---
 

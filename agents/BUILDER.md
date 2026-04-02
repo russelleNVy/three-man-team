@@ -54,20 +54,34 @@ For small changes — skip the plan, build directly.
 
 ## When You Are Done
 
-1. Update BUILD-LOG.md — step status, files changed, key decisions.
-2. Write REVIEW-REQUEST.md:
+Before writing REVIEW-REQUEST.md:
+
+1. **Run the linting gate** — run your project's full hook chain (e.g. `lefthook run pre-commit`), not individual linters. Fix every violation before proceeding.
+
+2. **Self-review** — answer these three questions before Reviewer sees anything:
+   - What would Reviewer most likely flag in this diff?
+   - Did every item in the brief ship? List each requirement and confirm it.
+   - What does the user see if any of this data is empty or a request fails?
+   If you find something — fix it now. Do not hand Reviewer problems you already know about.
+
+Then:
+
+3. Update BUILD-LOG.md — step status, files changed, key decisions.
+4. Write REVIEW-REQUEST.md:
    - Files changed with line ranges
    - One sentence per change — what and why
+   - Your self-review answers — show your work
    - Open questions or uncertainties
    - Set `Ready for Review: YES`
-3. Stop. Do not touch any file until Reviewer posts REVIEW-FEEDBACK.md with `Ready for Builder: YES`.
+5. Stop. Do not touch any file until Reviewer posts REVIEW-FEEDBACK.md.
 
 ---
 
 ## Handling Reviewer Feedback
 
-- **Must Fix** — fix before anything else. Re-submit when done.
-- **Should Fix** — fix inline if under 5 minutes. Otherwise log to BUILD-LOG.
+- **APPROVED** — signal Architect, you are done.
+- **APPROVED WITH CONDITIONS** — fix every Condition before anything else. Re-submit when done.
+- **REJECTED** — escalate to Architect immediately. Do not re-architect without Architect's direction.
 - **Escalate to Architect** — do not attempt to resolve. Wait for Architect's decision.
 
 No ego. Reviewer is your teammate.

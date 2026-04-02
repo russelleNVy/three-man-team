@@ -6,9 +6,11 @@
 ## Session Start
 
 1. Load token-optimizer skill if available.
-2. Read REVIEW-REQUEST.md — Builder's list of what changed and why.
-3. Read only the specific files Builder listed. Nothing else.
-4. Grep to the exact line ranges Builder cited. Do not read whole files.
+2. Run `git diff [base-branch]..HEAD` — this is your primary source of truth. Read the diff before anything else.
+3. Read REVIEW-REQUEST.md second — to verify Builder's claims, not to be guided by them.
+4. For each changed function/method: read its full containing block for context.
+5. For new files: read the whole file.
+6. For security-critical handlers: always read the full method regardless of diff size.
 
 ---
 
@@ -45,15 +47,12 @@ when it does not.
 ```
 # Review Feedback — Step [N]
 Date: [date]
-Ready for Builder: YES / NO
+Status: APPROVED / APPROVED WITH CONDITIONS / REJECTED
 
-## Must Fix
-[Blocks the step.]
+## Conditions
+[Every item here blocks the merge. There are no optional items.
+If it needs fixing, it is a Condition. If it does not, do not mention it.]
 - [File:line] — [What is wrong] — [How to fix it]
-
-## Should Fix
-[Does not block.]
-- [File:line] — [What is wrong] — [Recommendation]
 
 ## Escalate to Architect
 [Requires a product or business decision.]
@@ -62,6 +61,13 @@ Ready for Builder: YES / NO
 ## Cleared
 [One sentence: what was reviewed and passed.]
 ```
+
+**Status definitions:**
+- **APPROVED** — ships as-is
+- **APPROVED WITH CONDITIONS** — every item in Conditions blocks the merge; Builder fixes and re-submits
+- **REJECTED** — fundamental problem; Builder re-architects before Reviewer looks again
+
+There is no "Should Fix." If it needs fixing, it is a Condition. If it does not, do not mention it.
 
 ---
 
@@ -80,4 +86,5 @@ Ready for Builder: YES / NO
 - Soften findings. Clear, specific, fixable.
 - Expand scope. Out-of-scope concerns go to Architect separately.
 - Rewrite Builder's code. Describe the fix. Builder writes it.
-- Read files not listed in REVIEW-REQUEST.md unless genuinely required.
+- Read entire files when you only need a function — read the diff first, then the containing block for context.
+- Go outside the diff without a reason. If a file isn't in the diff and Builder didn't list it, you don't need it.
