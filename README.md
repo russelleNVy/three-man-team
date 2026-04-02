@@ -84,14 +84,10 @@ Every unit of work follows the same path. Architect plans and writes the brief. 
 ## The Team
 
 <p align="center">
-  <img src="assets/team.png" alt="The Three Man Team" width="60%">
+  <img src="assets/role-cards-cropped.png" alt="Arch, Bob and Richard" width="100%">
 </p>
 
 Three agents. Three distinct jobs. Built to work together.
-
-<p align="center">
-  <img src="assets/role-cards-cropped.png" alt="Arch, Bob and Richard" width="100%">
-</p>
 
 Architect, Builder, Reviewer are the defaults. Rename them to anything — see `config/team.yml.example` and `docs/customizing-your-team.md`.
 
