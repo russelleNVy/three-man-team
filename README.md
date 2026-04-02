@@ -33,8 +33,9 @@ The roles map to how real software ships:
 
 **Step 1 — Clone into your project folder**
 
+Navigate to your project folder first, then clone:
+
 ```bash
-cd /your/project
 git clone https://github.com/russelleNVy/three-man-team.git .claude/skills/three-man-team
 ```
 
