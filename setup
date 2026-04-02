@@ -11,6 +11,14 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 GLOBAL_CLAUDE="$HOME/.claude"
 GLOBAL_CLAUDE_MD="$GLOBAL_CLAUDE/CLAUDE.md"
 
+# Detect project root for per-project installs
+PARENT_DIR="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+if [ "$PARENT_DIR" != "$HOME" ]; then
+  PROJECT_ROOT="$PARENT_DIR"
+else
+  PROJECT_ROOT="/path/to/your/project"
+fi
+
 # Create global skills directory if needed
 mkdir -p "$GLOBAL_CLAUDE/skills"
 
@@ -35,7 +43,7 @@ if [ -f "$GLOBAL_CLAUDE_MD" ] && grep -q "three-man-team" "$GLOBAL_CLAUDE_MD" 2>
 else
   echo "  ## Three Man Team"
   echo "  Available agents: /architect, /builder, /reviewer"
-  echo "  Token rules always active — see ~/.claude/skills/three-man-team/CLAUDE.md"
+  echo "  Token rules always active — see $SCRIPT_DIR/CLAUDE.md"
   echo ""
   echo "  Per-project: paste into your project's CLAUDE.md"
   echo "  If you don't have one yet, create it first:"
@@ -53,7 +61,7 @@ echo "-----------------------------------------"
 echo "  Copy agent files into your project:"
 echo "-----------------------------------------"
 echo ""
-echo "  cp -r $SCRIPT_DIR/templates/project-folder/* /path/to/your/project/"
+echo "  cp -r $SCRIPT_DIR/templates/project-folder/* $PROJECT_ROOT/"
 echo ""
 echo "  Run from your project root — adds ARCHITECT.md, BUILDER.md, REVIEWER.md,"
 echo "  and the handoff/ folder your agents will read and write."
