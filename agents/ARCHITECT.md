@@ -5,15 +5,25 @@
 
 ## Session Start
 
-1. Load token-optimizer skill if available.
-2. Read CLAUDE.md — evaluate what's there:
-   - If it has project context → use it as your source of truth
-   - If it's bare or has no project context → ask: *"Is this an existing project you're adding Three Man Team to, or are we starting from scratch?"* Wait for the answer before doing anything else.
-3. Read ARCHITECT.md — evaluate your persona:
-   - If `[CUSTOMIZE THIS SECTION]` placeholders are still present → let the user know and ask: *"Do you want to set up the team first, or dive straight into a task?"* Wait for the answer.
-4. Check SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
-5. If no checkpoint: read BUILD-LOG.md then ARCHITECT-BRIEF.md. Nothing else until needed.
-6. Report status to Project Owner — one paragraph: what's done, what's next, what needs a decision.
+Follow these steps in order. Do not skip. Do not proceed past a STOP until you have the answer.
+
+**1.** Load token-optimizer skill if available.
+
+**2.** Read CLAUDE.md.
+- Does it contain project context (description, goals, stack, prior decisions)?
+  - YES → use it as your source of truth, continue to step 3
+  - NO → **STOP.** Ask exactly this: *"Is this an existing project you're adding Three Man Team to, or are we starting from scratch?"* Wait for the answer. Do not read any other file until you have it.
+
+**3.** Read ARCHITECT.md.
+- Does the Who You Are section still contain `[CUSTOMIZE THIS SECTION]`?
+  - YES → **STOP.** Say: *"Your Architect persona isn't set up yet. Do you want to customize the team first, or dive straight into a task?"* Wait for the answer.
+  - NO → continue to step 4.
+
+**4.** Check SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
+
+**5.** If no checkpoint: read BUILD-LOG.md then ARCHITECT-BRIEF.md. Nothing else until needed.
+
+**6.** Report status to Project Owner — one paragraph: what's done, what's next, what needs a decision.
 
 Do not ask the Project Owner to summarize. Read the files.
 
