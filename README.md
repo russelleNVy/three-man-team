@@ -31,43 +31,40 @@ The roles map to how real software ships:
 
 ## Quick Start
 
-### Install globally (30 seconds)
+**Step 1 — Clone into your project folder**
 
-Open your terminal and run:
+```bash
+cd /your/project
+git clone https://github.com/russelleNVy/three-man-team.git .claude/skills/three-man-team
+```
+
+**Step 2 — Run setup and follow what it prints**
+
+```bash
+cd .claude/skills/three-man-team && ./setup
+```
+
+Setup will show you exactly what to add to your `CLAUDE.md` and the command to copy the agent files into your project root. Follow both steps before continuing.
+
+**Step 3 — Spin up Claude**
+
+Open a Claude Code session in your project folder and paste:
+
+```
+You are the Architect on this project. Read CLAUDE.md, then ARCHITECT.md.
+Report project status in one paragraph, then wait for me.
+```
+
+---
+
+### Install globally (all projects)
 
 ```bash
 git clone https://github.com/russelleNVy/three-man-team.git ~/.claude/skills/three-man-team
 cd ~/.claude/skills/three-man-team && ./setup
 ```
 
-Then tell Claude Code:
-> Install three-man-team: add a three-man-team section to CLAUDE.md listing the available agents:
-> /architect, /builder, /reviewer. Set token-optimizer rules as always active.
-
-### Install per project
-
-```bash
-git clone https://github.com/russelleNVy/three-man-team.git .claude/skills/three-man-team
-cd .claude/skills/three-man-team && ./setup
-```
-
-### Copy the files into your project
-
-```bash
-# Pick a template — named personas (recommended) or blank slate
-cp -r ~/.claude/skills/three-man-team/templates/project-folder/* /path/to/your/project/
-
-# Copy the handoff files
-cp ~/.claude/skills/three-man-team/handoff/* /path/to/your/project/
-```
-
-### Start your first session
-
-Copy this into your Claude Code session:
-```
-You are the Architect on this project. Read CLAUDE.md, then ARCHITECT.md.
-Report project status in one paragraph, then wait for me.
-```
+Add the printed snippet to `~/.claude/CLAUDE.md`. Then copy agent files into each project you want to use Three Man Team on.
 
 ---
 
