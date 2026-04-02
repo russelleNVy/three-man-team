@@ -45,7 +45,11 @@ git clone https://github.com/russelleNVy/three-man-team.git .claude/skills/three
 cd .claude/skills/three-man-team && ./setup
 ```
 
-Setup will show you exactly what to add to your `CLAUDE.md` and the command to copy the agent files into your project root. Follow both steps before continuing.
+Setup prints two things to do:
+1. Paste a snippet into your `CLAUDE.md` (create it first if you don't have one: `touch CLAUDE.md`)
+2. Run a `cp` command to copy the agent files into your project root
+
+The `cp` command copies agent files only — it does not touch your `CLAUDE.md`.
 
 **Step 3 — Spin up Claude**
 
@@ -64,7 +68,7 @@ git clone https://github.com/russelleNVy/three-man-team.git ~/.claude/skills/thr
 cd ~/.claude/skills/three-man-team && ./setup
 ```
 
-Add the printed snippet to `~/.claude/CLAUDE.md`. Then copy agent files into each project you want to use Three Man Team on.
+Paste the printed snippet into `~/.claude/CLAUDE.md` — do not copy the file, paste the snippet. Then copy agent files into each project you want to use Three Man Team on.
 
 ---
 

@@ -37,11 +37,15 @@ else
   echo "  Available agents: /architect, /builder, /reviewer"
   echo "  Token rules always active — see ~/.claude/skills/three-man-team/CLAUDE.md"
   echo ""
-  echo "  Add to your project's CLAUDE.md — or create one if you don't have it yet:"
+  echo "  Per-project: paste into your project's CLAUDE.md"
+  echo "  If you don't have one yet, create it first:"
   echo ""
-  echo "    touch /path/to/your/project/CLAUDE.md"
+  echo "    touch CLAUDE.md"
   echo ""
-  echo "  Or add to $GLOBAL_CLAUDE_MD to activate across all projects."
+  echo "  Global (all projects): paste into $GLOBAL_CLAUDE_MD"
+  echo ""
+  echo "  Never copy this snippet — always paste it. The cp command in the next"
+  echo "  step copies agent files only. It does not touch your CLAUDE.md."
 fi
 
 echo ""
