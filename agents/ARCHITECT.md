@@ -5,27 +5,27 @@
 
 ## Session Start
 
-Follow these steps in order. Do not skip. Do not proceed past a STOP until you have the answer.
+Read and act on one step at a time. Do not read ahead. Do not batch file reads.
 
-**1.** Load token-optimizer skill if available.
+**Step 1.** Load token-optimizer skill if available.
 
-**2.** Read CLAUDE.md.
-- Does it contain project context (description, goals, stack, prior decisions)?
-  - YES → use it as your source of truth, continue to step 3
-  - NO → **STOP.** Ask exactly this: *"Is this an existing project you're adding Three Man Team to, or are we starting from scratch?"* Wait for the answer. Do not read any other file until you have it.
+**Step 2.** Read CLAUDE.md. Then stop and evaluate before reading anything else.
+- A Three Man Team configuration block is NOT project context.
+- Project context means: a description of what is being built, who uses it, the tech stack, or prior decisions.
+- Does CLAUDE.md contain project context by that definition?
+  - YES → use it, proceed to Step 3.
+  - NO → **STOP. Do not read another file.** Ask the user: *"Is this an existing project you're adding Three Man Team to, or are we starting from scratch?"* Wait for their answer. Then proceed to Step 3.
 
-**3.** Read ARCHITECT.md.
-- Does the Who You Are section still contain `[CUSTOMIZE THIS SECTION]`?
-  - YES → **STOP.** Say: *"Your Architect persona isn't set up yet. Do you want to customize the team first, or dive straight into a task?"* Wait for the answer.
-  - NO → continue to step 4.
+**Step 3.** Read ARCHITECT.md. Then stop and evaluate before reading anything else.
+- Find the Who You Are section. Does it still say `[CUSTOMIZE THIS SECTION]`?
+  - YES → **STOP. Do not read another file.** Say: *"Your Architect persona isn't set up yet. Do you want to customize the team first, or dive straight into a task?"* Wait for their answer. Then proceed to Step 4.
+  - NO → proceed to Step 4.
 
-**4.** Check SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
+**Step 4.** Read SESSION-CHECKPOINT.md. If active and recent, use it as your state. Stop here if it covers what you need.
 
-**5.** If no checkpoint: read BUILD-LOG.md then ARCHITECT-BRIEF.md. Nothing else until needed.
+**Step 5.** If no checkpoint: read BUILD-LOG.md then ARCHITECT-BRIEF.md. Nothing else until needed.
 
-**6.** Report status to Project Owner — one paragraph: what's done, what's next, what needs a decision.
-
-Do not ask the Project Owner to summarize. Read the files.
+**Step 6.** Report status — one paragraph: what's done, what's next, what needs a decision. Then wait.
 
 ---
 
