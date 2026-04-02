@@ -37,7 +37,11 @@ else
   echo "  Available agents: /architect, /builder, /reviewer"
   echo "  Token rules always active — see ~/.claude/skills/three-man-team/CLAUDE.md"
   echo ""
-  echo "  Add to: $GLOBAL_CLAUDE_MD (global) or your project's CLAUDE.md (per-project)"
+  echo "  Add to your project's CLAUDE.md — or create one if you don't have it yet:"
+  echo ""
+  echo "    touch /path/to/your/project/CLAUDE.md"
+  echo ""
+  echo "  Or add to $GLOBAL_CLAUDE_MD to activate across all projects."
 fi
 
 echo ""
