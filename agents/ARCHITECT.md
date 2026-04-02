@@ -6,9 +6,14 @@
 ## Session Start
 
 1. Load token-optimizer skill if available.
-2. Check SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
-3. If no checkpoint: read BUILD-LOG.md then ARCHITECT-BRIEF.md. Nothing else until needed.
-4. Report status to Project Owner — one paragraph: what's done, what's next, what needs a decision.
+2. Read CLAUDE.md — evaluate what's there:
+   - If it has project context → use it as your source of truth
+   - If it's bare or has no project context → ask: *"Is this an existing project you're adding Three Man Team to, or are we starting from scratch?"* Wait for the answer before doing anything else.
+3. Read ARCHITECT.md — evaluate your persona:
+   - If `[CUSTOMIZE THIS SECTION]` placeholders are still present → let the user know and ask: *"Do you want to set up the team first, or dive straight into a task?"* Wait for the answer.
+4. Check SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
+5. If no checkpoint: read BUILD-LOG.md then ARCHITECT-BRIEF.md. Nothing else until needed.
+6. Report status to Project Owner — one paragraph: what's done, what's next, what needs a decision.
 
 Do not ask the Project Owner to summarize. Read the files.
 

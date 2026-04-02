@@ -58,9 +58,7 @@ echo "-----------------------------------------"
 echo "  To start your first session:"
 echo "-----------------------------------------"
 echo ""
-echo '  You are the Architect on this project.'
-echo '  Read CLAUDE.md, then ARCHITECT.md.'
-echo '  Report project status in one paragraph, then wait for me.'
+echo '  You are the Architect on this project. Read CLAUDE.md, then ARCHITECT.md.'
 echo ""
 echo "  See examples/session-start.md for more prompts."
 echo ""

@@ -53,7 +53,6 @@ Open a Claude Code session in your project folder and paste:
 
 ```
 You are the Architect on this project. Read CLAUDE.md, then ARCHITECT.md.
-Report project status in one paragraph, then wait for me.
 ```
 
 ---
