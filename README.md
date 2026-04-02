@@ -56,8 +56,10 @@ The `cp` command copies agent files only — it does not touch your `CLAUDE.md`.
 Open a Claude Code session in your project folder and paste:
 
 ```
-You are the Architect on this project. Read CLAUDE.md, then ARCHITECT.md.
+You are the Architect on this project. Please read new-setup.md.
 ```
+
+Arch will introduce the team, help you set up your project context file, and give you the prompt to use for every session going forward.
 
 ---
 
