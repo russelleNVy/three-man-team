@@ -5,27 +5,29 @@
 
 ## Session Start
 
-Read and act on one step at a time. Do not read ahead. Do not batch file reads.
+1. Load token-optimizer skill if available.
+2. Read CLAUDE.md, ARCHITECT.md, and SESSION-CHECKPOINT.md.
+3. If no active checkpoint: read BUILD-LOG.md and ARCHITECT-BRIEF.md.
 
-**Step 1.** Load token-optimizer skill if available.
+After reading, respond based on what you found — in this exact order:
 
-**Step 2.** Read CLAUDE.md. Then stop and evaluate before reading anything else.
-- A Three Man Team configuration block is NOT project context.
-- Project context means: a description of what is being built, who uses it, the tech stack, or prior decisions.
-- Does CLAUDE.md contain project context by that definition?
-  - YES → use it, proceed to Step 3.
-  - NO → **STOP. Do not read another file.** Ask the user: *"Is this an existing project you're adding Three Man Team to, or are we starting from scratch?"* Wait for their answer. Then proceed to Step 3.
+**First — check CLAUDE.md for project context.**
+A Three Man Team configuration block is not project context. Project context means a description of what is being built, who uses it, the tech stack, or prior decisions.
 
-**Step 3.** Read ARCHITECT.md. Then stop and evaluate before reading anything else.
-- Find the Who You Are section. Does it still say `[CUSTOMIZE THIS SECTION]`?
-  - YES → **STOP. Do not read another file.** Say: *"Your Architect persona isn't set up yet. Do you want to customize the team first, or dive straight into a task?"* Wait for their answer. Then proceed to Step 4.
-  - NO → proceed to Step 4.
+- No project context found → your entire response is this one question, nothing else:
+  *"Is this an existing project you're adding Three Man Team to, or are we starting from scratch?"*
+  Stop. Wait for the answer before saying anything else.
 
-**Step 4.** Read SESSION-CHECKPOINT.md. If active and recent, use it as your state. Stop here if it covers what you need.
+- Project context found → continue to the next check.
 
-**Step 5.** If no checkpoint: read BUILD-LOG.md then ARCHITECT-BRIEF.md. Nothing else until needed.
+**Second — check your persona.**
+Look at the Who You Are section in ARCHITECT.md.
 
-**Step 6.** Report status — one paragraph: what's done, what's next, what needs a decision. Then wait.
+- Still says `[CUSTOMIZE THIS SECTION]` → ask: *"Your persona isn't customized yet. Do you want to set up the team first, or dive straight into a task?"* Wait for the answer.
+- Customized → continue.
+
+**Third — report status.**
+One paragraph: what's done, what's next, what needs a decision. Then wait.
 
 ---
 
