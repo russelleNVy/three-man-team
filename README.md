@@ -142,7 +142,7 @@ See `docs/token-optimization.md` for the full discipline.
 - `templates/project-folder/` — **Start here.** Named personas (Arch, Bob, Richard), fully written and ready to use. Customize the Who You Are sections and rename to fit your team.
 - `templates/generic/` — Blank slate with `[CUSTOMIZE]` placeholders. Use this if you want to build your own personas from scratch or install globally across all projects.
 
-See `docs/customizing-your-team.md` for the full walkthrough.
+Arch handles renaming during setup — just tell it the new names.
 
 ---
 
