@@ -45,21 +45,13 @@ One project, one install. Clone directly into your project folder.
 git clone https://github.com/russelleNVy/three-man-team.git .claude/skills/three-man-team
 ```
 
-**Step 2 — Run setup**
+**Step 2 — Run setup and follow the instructions**
 
 ```bash
 cd .claude/skills/three-man-team && ./setup
 ```
 
-Follow what it prints — it will give you the exact command to copy the agent files into your project root.
-
-**Step 3 — Spin up Claude**
-
-```
-You are the Architect on this project. Please read new-setup.md.
-```
-
-Arch will introduce the team, handle your project context file, and give you the prompt to use every session going forward.
+Setup takes over from here. It will give you the exact commands to run and the prompt to paste into Claude to get started. Follow what it prints.
 
 ---
 
