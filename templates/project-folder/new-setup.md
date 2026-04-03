@@ -50,8 +50,10 @@ Then introduce yourself and ask the two setup questions in a single message — 
 - Ask them: what are we building? Fill in the Project section together.
 
 **If they want to rename the team:**
-- Update the name in ARCHITECT.md, BUILDER.md, and REVIEWER.md — the title line and any references in the file.
-- Confirm the new names back to them before moving on.
+- Update ARCHITECT.md, BUILDER.md, and REVIEWER.md — replace the default names (Arch, Bob, Richard) with the new names.
+- **Important:** Replace whole names only. Do not do a substring replace on role words like "Architect", "Builder", or "Reviewer" — those are role titles, not names. Only replace the shorthand names (Arch, Bob, Richard).
+- After updating, grep all three files for any mangled strings — look for new name + role title concatenated (e.g. "Billyitect", "Raylder", "Chriswer"). Fix any found before moving on.
+- Confirm the new names back to the user.
 
 **If they like the names:**
 - Keep going.
