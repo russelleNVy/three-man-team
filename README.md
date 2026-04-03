@@ -72,14 +72,14 @@ That's the one-time install. Setup will confirm everything is in place.
 
 **For each project you want to use Three Man Team on:**
 
-**Step 2 — Copy agent files into your project**
+**Step 2 — Copy agent files into your project, then spin up Claude**
 
 ```bash
 cp -r ~/.claude/skills/three-man-team/templates/project-folder/* /path/to/your/project/
 cd /path/to/your/project
 ```
 
-**Step 3 — Spin up Claude**
+Open Claude Code and paste:
 
 ```
 You are the Architect on this project. Please read new-setup.md.
