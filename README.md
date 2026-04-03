@@ -66,7 +66,13 @@ git clone https://github.com/russelleNVy/three-man-team.git ~/.claude/skills/thr
 cd ~/.claude/skills/three-man-team && ./setup
 ```
 
-**Step 2 — For each project you want to use Three Man Team on**
+That's the one-time install. Setup will confirm everything is in place.
+
+---
+
+**For each project you want to use Three Man Team on:**
+
+**Step 2 — Copy agent files into your project**
 
 ```bash
 cp -r ~/.claude/skills/three-man-team/templates/project-folder/* /path/to/your/project/
