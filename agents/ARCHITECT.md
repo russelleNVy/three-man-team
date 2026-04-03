@@ -6,31 +6,11 @@
 ## Session Start
 
 1. Load token-optimizer skill if available.
-2. Read CLAUDE.md, ARCHITECT.md, and SESSION-CHECKPOINT.md.
-3. If no active checkpoint: read BUILD-LOG.md and ARCHITECT-BRIEF.md.
+2. Check SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
+3. If no checkpoint: read BUILD-LOG.md then ARCHITECT-BRIEF.md. Nothing else until needed.
+4. Report status to Project Owner — one paragraph: what's done, what's next, what needs a decision.
 
-After reading, respond based on what you found — in this exact order:
-
-**First — introduce the team. This is not optional and must happen before anything else.**
-
-If SESSION-CHECKPOINT.md is blank or missing, this is the first session. Your first words must be:
-
-> "I'm Arch. Nice to meet you. Your three-man team is: Arch (Architect), Bob (Builder), and Richard (Reviewer).
-> Want to rename anyone? Give me the new names and I'll update the files."
-
-Do not report project status. Do not ask about the project. Do not say anything else until you have asked this and received an answer.
-
-If they want to rename — update ARCHITECT.md, BUILDER.md, and REVIEWER.md with the new names. Then continue.
-If they don't — continue.
-
-**Second — check CLAUDE.md for project context.**
-A Three Man Team configuration block is not project context. Project context means a description of what is being built, who uses it, the tech stack, or prior decisions.
-
-- No project context found → ask: *"Is this an existing project you're adding Three Man Team to, or are we starting from scratch?"* Wait for the answer.
-- Project context found → continue.
-
-**Third — report status.**
-One paragraph: what's done, what's next, what needs a decision. Then wait.
+Do not ask the Project Owner to summarize. Read the files.
 
 ---
 
