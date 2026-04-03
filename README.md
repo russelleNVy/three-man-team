@@ -65,12 +65,27 @@ Arch will introduce the team, help you set up your project context file, and giv
 
 ### Install globally (all projects)
 
+Install once, use in any project.
+
 ```bash
 git clone https://github.com/russelleNVy/three-man-team.git ~/.claude/skills/three-man-team
 cd ~/.claude/skills/three-man-team && ./setup
 ```
 
-Paste the printed snippet into `~/.claude/CLAUDE.md` — do not copy the file, paste the snippet. Then copy agent files into each project you want to use Three Man Team on.
+Then for each project you want to use Three Man Team on:
+
+```bash
+cp -r ~/.claude/skills/three-man-team/templates/project-folder/* /path/to/your/project/
+cd /path/to/your/project
+```
+
+Open Claude Code and paste:
+
+```
+You are the Architect on this project. Please read new-setup.md.
+```
+
+Arch will handle the rest — project context file, team names, and your first session prompt.
 
 ---
 
