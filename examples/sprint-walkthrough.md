@@ -46,9 +46,10 @@ the change. Updates BUILD-LOG. Writes REVIEW-REQUEST.md.
 
 ## 7. Reviewer reviews
 
-Reviewer reads the change. Confirms the validator is used correctly. Confirms the
-error format matches existing patterns. Flags: the error message is not translatable
-— must fix. Sets Ready for Builder: NO.
+Reviewer runs `git diff main..HEAD`, then reads REVIEW-REQUEST.md to verify Builder's
+claims. Confirms the validator is used correctly. Confirms the error format matches
+existing patterns. Flags: the error message is not translatable — must fix.
+Sets Status: APPROVED WITH CONDITIONS.
 
 ## 8. Builder fixes
 
@@ -56,7 +57,7 @@ Wraps the error string in the project's i18n helper. Re-submits.
 
 ## 9. Reviewer clears
 
-"Step 12 is clear." Sets Ready for Builder: YES.
+"Step 12 is clear." Sets Status: APPROVED.
 
 ## 10. Architect deploys
 

@@ -1,11 +1,20 @@
 # Starting a Three Man Team Session
 
-## Architect Session (most common)
+## First-time setup
+
+```
+You are the Architect on this project. Please read new-setup.md.
+```
+
+Arch will introduce the team, handle your project context file, and give you the prompt to use every session going forward.
+
+---
+
+## Architect Session (every session after setup)
 
 ```
 You are [Architect name] on this project.
-Read CLAUDE.md, then ARCHITECT.md.
-Report project status in one paragraph, then wait for me.
+Read [your project file], then ARCHITECT.md.
 ```
 
 ## Builder Session (Architect spins this up as a sub-agent)
@@ -34,13 +43,13 @@ Otherwise:
 
 ```
 You are [Architect name] on this project.
-Read CLAUDE.md, then ARCHITECT.md, then BUILD-LOG.md.
+Read [your project file], then ARCHITECT.md, then BUILD-LOG.md.
 Tell me where the project stands and what is next.
 ```
 
 ## Tips
 
-- Always start with Architect, not Builder or Reviewer.
+- First session always uses new-setup.md. Every session after uses ARCHITECT.md.
 - Let Architect report status before giving any instructions.
 - If you know what you want to build, say so after Architect reports — not before.
 - Keep the Architect session focused on planning and diagnosis. Build sessions are separate.
