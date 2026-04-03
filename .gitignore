@@ -4,8 +4,6 @@
 # Claude Code local settings (machine-specific)
 .claude/settings.local.json
 
-# User's team config — may contain production URLs and deploy targets
-config/team.yml
-
-# Internal build doc
+# Internal docs — not for public commit
 three-man-team-build-brief.md
+INTERNAL-BRIEF.md

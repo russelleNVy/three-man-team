@@ -1,46 +1,50 @@
 # Installing Three Man Team
 
-## Global Install — All Your Projects
+For the full quick start, see [README.md](README.md).
 
-Three Man Team installs into `~/.claude/skills/three-man-team` and is available in every project.
-
-```bash
-git clone https://github.com/russelleNVy/three-man-team.git ~/.claude/skills/three-man-team
-cd ~/.claude/skills/three-man-team && ./setup
-```
-
-Then add to your global `~/.claude/CLAUDE.md`:
-```
-## Three Man Team
-Available agents: /architect, /builder, /reviewer
-Token rules always active — see three-man-team/CLAUDE.md
-```
+---
 
 ## Per-Project Install
 
-Three Man Team installs into `.claude/skills/three-man-team` inside your repo and only applies to that project.
+Clone into your project folder, then run setup:
 
 ```bash
 git clone https://github.com/russelleNVy/three-man-team.git .claude/skills/three-man-team
 cd .claude/skills/three-man-team && ./setup
 ```
 
-Add to your project's `CLAUDE.md`:
-```
-## Three Man Team
-Available agents: /architect, /builder, /reviewer
+Setup handles the rest — follow what it prints.
+
+---
+
+## Global Install
+
+Install once, use in any project:
+
+```bash
+git clone https://github.com/russelleNVy/three-man-team.git ~/.claude/skills/three-man-team
+cd ~/.claude/skills/three-man-team && ./setup
 ```
 
-## VS Code / Cursor / Codex
+Then for each project:
 
-Three Man Team uses the SKILL.md standard and works with any agent that supports context files.
-Copy the `agents/` directory and `CLAUDE.md` into your project root.
+```bash
+cp -r ~/.claude/skills/three-man-team/templates/project-folder/* /path/to/your/project/
+cd /path/to/your/project
+```
+
+Open Claude Code and paste:
+
+```
+You are the Architect on this project. Please read new-setup.md.
+```
+
+---
 
 ## Requirements
 
-- Claude Code CLI (for slash command support)
+- Claude Code CLI — install at https://claude.ai/code
 - Git
-- Any agent supporting CLAUDE.md / SKILL.md context (for other tools)
 
 ## Critical: Always Run Builder and Reviewer in the Foreground
 
