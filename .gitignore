@@ -1,8 +1,8 @@
 # OS
 .DS_Store
 
-# Claude Code local settings (machine-specific)
-.claude/settings.local.json
+# Claude Code local dev config — not for users
+.claude/
 
 # Internal docs — not for public commit
 three-man-team-build-brief.md
