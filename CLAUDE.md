@@ -49,4 +49,4 @@ All team communication flows through files in `handoff/`:
 - `BUILD-LOG.md` — shared record, Architect owns
 - `SESSION-CHECKPOINT.md` — Architect writes at session end
 
-Copy templates from `handoff/` into your project root to get started.
+Run `./setup` to copy agent files into your project.
