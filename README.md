@@ -31,55 +31,57 @@ The roles map to how real software ships:
 
 ## Quick Start
 
-**Step 1 — Clone into your project folder**
+Choose your install type:
 
-Navigate to your project folder first, then clone:
+---
+
+### Per-project install (recommended)
+
+One project, one install. Clone directly into your project folder.
+
+**Step 1 — Navigate to your project folder and clone**
 
 ```bash
 git clone https://github.com/russelleNVy/three-man-team.git .claude/skills/three-man-team
 ```
 
-**Step 2 — Run setup and follow what it prints**
+**Step 2 — Run setup**
 
 ```bash
 cd .claude/skills/three-man-team && ./setup
 ```
 
-Setup prints two things to do:
-1. Paste a snippet into your `CLAUDE.md` (create it first if you don't have one: `touch CLAUDE.md`)
-2. Run a `cp` command to copy the agent files into your project root
-
-The `cp` command copies agent files only — it does not touch your `CLAUDE.md`.
+Follow what it prints — it will give you the exact command to copy the agent files into your project root.
 
 **Step 3 — Spin up Claude**
-
-Open a Claude Code session in your project folder and paste:
 
 ```
 You are the Architect on this project. Please read new-setup.md.
 ```
 
-Arch will introduce the team, help you set up your project context file, and give you the prompt to use for every session going forward.
+Arch will introduce the team, handle your project context file, and give you the prompt to use every session going forward.
 
 ---
 
-### Install globally (all projects)
+### Global install (all projects)
 
 Install once, use in any project.
+
+**Step 1 — Clone to your global Claude skills folder**
 
 ```bash
 git clone https://github.com/russelleNVy/three-man-team.git ~/.claude/skills/three-man-team
 cd ~/.claude/skills/three-man-team && ./setup
 ```
 
-Then for each project you want to use Three Man Team on:
+**Step 2 — For each project you want to use Three Man Team on**
 
 ```bash
 cp -r ~/.claude/skills/three-man-team/templates/project-folder/* /path/to/your/project/
 cd /path/to/your/project
 ```
 
-Open Claude Code and paste:
+**Step 3 — Spin up Claude**
 
 ```
 You are the Architect on this project. Please read new-setup.md.
