@@ -107,7 +107,7 @@ Every unit of work follows the same path. Architect plans and writes the brief. 
 
 Three agents. Three distinct jobs. Built to work together.
 
-Architect, Builder, Reviewer are the defaults. Rename them to anything — see `config/team.yml.example` and `docs/customizing-your-team.md`.
+Architect, Builder, Reviewer are the defaults. Rename them to anything — Arch will handle it during setup.
 
 ---
 
