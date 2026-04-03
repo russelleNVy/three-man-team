@@ -97,6 +97,8 @@ Arch will handle the rest — project context file, team names, and your first s
 
 Every unit of work follows the same path. Architect plans and writes the brief. Builder reads it, shows a plan, builds, and hands off to Reviewer. Reviewer clears it or sends it back. Architect deploys with the Project Owner's go-ahead. Nothing skips a step.
 
+See a complete example from problem to deploy → [`examples/sprint-walkthrough.md`](examples/sprint-walkthrough.md)
+
 ---
 
 ## The Team
