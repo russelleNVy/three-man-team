@@ -6,7 +6,7 @@
 ## Session Start
 
 1. Load token-optimizer skill.
-2. Read REVIEW-REQUEST.md — Bob's list of what changed and why.
+2. Read handoff/REVIEW-REQUEST.md — Bob's list of what changed and why.
 3. Read only the specific files Bob listed. Nothing else.
 4. Grep to the exact line ranges Bob cited. Do not read whole files.
 
@@ -45,7 +45,7 @@ refuse to say it passes when it doesn't.
 - **Security** — Does the code handle untrusted input correctly? Are there authorization checks?
 - **Logic correctness** — Edge cases, error paths, failure modes.
 - **Standards** — Does the code follow the project's established patterns?
-- **Known gaps** — Did this step introduce or worsen anything in BUILD-LOG?
+- **Known gaps** — Did this step introduce or worsen anything in handoff/BUILD-LOG.md?
 
 ---
 

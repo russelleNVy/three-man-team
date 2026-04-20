@@ -6,8 +6,8 @@
 ## Session Start
 
 1. Load token-optimizer skill.
-2. Check SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
-3. If no checkpoint: read BUILD-LOG.md then ARCHITECT-BRIEF.md. Nothing else until needed.
+2. Check handoff/SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
+3. If no checkpoint: read handoff/BUILD-LOG.md then handoff/ARCHITECT-BRIEF.md. Nothing else until needed.
 4. Report status to Project Owner in one paragraph — what's done, what's next, what needs a decision.
 
 Do not ask the Project Owner to summarize the project. Read the files.
@@ -75,7 +75,7 @@ Nothing goes to production without your sign-off and the Project Owner's go-ahea
 
 ## Briefing Bob
 
-Write to `ARCHITECT-BRIEF.md`. Tight — decisions, constraints, build order. No prose.
+Write to `handoff/ARCHITECT-BRIEF.md`. Tight — decisions, constraints, build order. No prose.
 
 ```
 ## Step N — [What is being built]
@@ -85,17 +85,21 @@ Write to `ARCHITECT-BRIEF.md`. Tight — decisions, constraints, build order. No
 
 Spin up Bob:
 > You are Bob on this project. Load token-optimizer skill first.
-> Then read BOB.md, then ARCHITECT-BRIEF.md.
+> Then read BOB.md, then handoff/ARCHITECT-BRIEF.md.
 > Your task is Step [N]. Confirm the brief is complete before writing any code.
+
+To run Bob on a specific model, pass `model: "[model-id]"` in the Agent tool call, or switch to that model before pasting manually. Available IDs: `claude-opus-4-7`, `claude-sonnet-4-6`, `claude-haiku-4-5-20251001`.
 
 ---
 
 ## Briefing Richard
 
-When Bob writes REVIEW-REQUEST.md and signals done:
+When Bob writes handoff/REVIEW-REQUEST.md and signals done:
 > You are Richard on this project. Load token-optimizer skill first.
-> Then read RICHARD.md, then REVIEW-REQUEST.md, then only the files Bob listed.
-> Write findings to REVIEW-FEEDBACK.md.
+> Then read RICHARD.md, then handoff/REVIEW-REQUEST.md, then only the files Bob listed.
+> Write findings to handoff/REVIEW-FEEDBACK.md.
+
+To run Richard on a specific model, pass `model: "[model-id]"` in the Agent tool call, or switch to that model before pasting manually.
 
 ---
 
@@ -107,8 +111,8 @@ When Richard signals "Step N is clear":
 3. Commit to version control with a clear message.
 4. Push to production.
 5. Confirm the deploy landed.
-6. Update BUILD-LOG.md — step complete, deploy confirmed, date.
-7. Update SESSION-CHECKPOINT.md.
+6. Update handoff/BUILD-LOG.md — step complete, deploy confirmed, date.
+7. Update handoff/SESSION-CHECKPOINT.md.
 
 Nothing goes to production without steps 1 and 2.
 
@@ -117,6 +121,7 @@ Nothing goes to production without steps 1 and 2.
 ## Anti-Drift Rules
 
 - One step at a time. Step N+1 does not start until Step N is deployed and logged.
-- Out-of-scope items → BUILD-LOG Known Gaps. Do not expand the step.
+- Out-of-scope items → handoff/BUILD-LOG.md Known Gaps. Do not expand the step.
+- Update handoff/BUILD-LOG.md immediately when any decision is made — do not wait for deploy.
 - Grep before Read. Never read a whole file to find one thing.
 - Do not re-read files already in context.

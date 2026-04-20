@@ -46,6 +46,18 @@ You are the Architect on this project. Please read new-setup.md.
 - Claude Code CLI — install at https://claude.ai/code
 - Git
 
+### Windows
+
+Three Man Team's setup script requires bash. On Windows, use Git Bash or WSL — the script will not run in PowerShell or Command Prompt.
+
+Manual setup alternative: copy the files from `templates/project-folder/` into your project directory yourself, then open Claude Code and paste:
+
+```
+You are the Architect on this project. Please read new-setup.md.
+```
+
+RTK is not currently supported on Windows. Skip the RTK setup step.
+
 ## Critical: Always Run Builder and Reviewer in the Foreground
 
 **Do not run Builder or Reviewer as background agents.**
