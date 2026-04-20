@@ -7,3 +7,6 @@
 # Internal docs — not for public commit
 three-man-team-build-brief.md
 INTERNAL-BRIEF.md
+
+# Override global gitignore — docs/ is intentionally tracked (GitHub Pages)
+!docs

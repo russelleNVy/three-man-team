@@ -2,6 +2,10 @@
   <img src="assets/banner.png" alt="Three Man Team" width="100%">
 </p>
 
+<p align="center">
+  <a href="https://russellenvy.github.io/three-man-team/">russellenvy.github.io/three-man-team</a>
+</p>
+
 ---
 
 ## The Problem With AI Coding Tools

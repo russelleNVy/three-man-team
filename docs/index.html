@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three Man Team — Structure for teams that ship.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1b2a;
+      --accent: #4A90D9;
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.5);
+      --subtle: rgba(255, 255, 255, 0.25);
+      --card-bg: rgba(74, 144, 217, 0.04);
+      --card-border: rgba(74, 144, 217, 0.25);
+      --grid-line: rgba(74, 144, 217, 0.07);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Blueprint grid texture */
+    .grid-texture {
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Corner marks */
+    .corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: rgba(74, 144, 217, 0.4);
+      border-style: solid;
+    }
+    .corner-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+    .corner-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+    .corner-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+    .corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 27, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 32px;
+    }
+
+    .nav-wordmark {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent) !important;
+      border: 1px solid rgba(74, 144, 217, 0.35);
+      padding: 6px 16px;
+      border-radius: 4px;
+      transition: background 0.15s, border-color 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-cta:hover {
+      background: rgba(74, 144, 217, 0.08);
+      border-color: rgba(74, 144, 217, 0.6);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(74, 144, 217, 0.10) 0%, transparent 70%);
+    }
+
+    .hero-frame {
+      position: relative;
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+      max-width: 820px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline {
+      font-size: clamp(52px, 8vw, 88px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline span { color: var(--accent); }
+
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--accent);
+      margin: 0 auto 28px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 56px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 5px;
+      transition: background 0.15s, opacity 0.15s;
+    }
+
+    .btn-primary:hover { background: #5ba3e8; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      border: 1px solid var(--card-border);
+      padding: 11px 22px;
+      border-radius: 5px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .btn-ghost:hover { color: var(--text); border-color: rgba(74, 144, 217, 0.5); }
+
+    .hero-proof {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding-top: 40px;
+      border-top: 1px solid var(--card-border);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .proof-item {
+      font-size: 14px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .proof-sep {
+      width: 1px;
+      height: 20px;
+      background: var(--card-border);
+    }
+
+    /* ─── SECTION COMMON ─── */
+    .section {
+      padding: 112px 0;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .section-headline {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .section-body {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* ─── SECTION WITH GRID ─── */
+    .section-grid {
+      position: relative;
+    }
+
+    .section-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .section-grid .container { position: relative; }
+
+    /* ─── PROBLEM ─── */
+    .problem-quote {
+      margin-top: 48px;
+      border-left: 2px solid var(--accent);
+      padding: 20px 28px;
+      background: var(--card-bg);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .problem-quote p {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* ─── WHY THREE ─── */
+    .why-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .why-card {
+      border: 1.5px solid var(--card-border);
+      border-radius: 6px;
+      background: var(--card-bg);
+      padding: 28px 24px;
+    }
+
+    .why-card-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .why-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .why-card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── WORKFLOW ─── */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 64px 0 56px;
+    }
+
+    .pipeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pipeline-node {
+      width: 140px;
+      height: 140px;
+      border: 1.5px solid var(--card-border);
+      border-radius: 6px;
+      background: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .pipeline-node.highlight {
+      border-color: rgba(74, 144, 217, 0.7);
+      background: rgba(74, 144, 217, 0.12);
+    }
+
+    .pipeline-node-icon { font-size: 28px; line-height: 1; }
+
+    .pipeline-node-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .pipeline-node-sub {
+      font-size: 11px;
+      color: rgba(74, 144, 217, 0.8);
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+
+    .pipeline-owner {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--subtle);
+    }
+
+    .pipeline-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+      padding-bottom: 28px;
+    }
+
+    .pipeline-arrow-line {
+      width: 36px;
+      height: 1.5px;
+      background: rgba(74, 144, 217, 0.3);
+      position: relative;
+    }
+
+    .pipeline-arrow-line::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left: 7px solid rgba(74, 144, 217, 0.5);
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+    }
+
+    .workflow-handoffs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .workflow-handoff {
+      padding: 24px;
+      border: 1.5px solid var(--card-border);
+      border-radius: 6px;
+      background: var(--card-bg);
+    }
+
+    .workflow-handoff-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .workflow-handoff p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ─── TEAM ─── */
+    .team-cards {
+      display: flex;
+      gap: 28px;
+      margin-top: 56px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .team-card {
+      width: 280px;
+      border: 1.5px solid var(--card-border);
+      border-radius: 6px;
+      background: var(--card-bg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-card-photo {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%);
+    }
+
+    .team-card-body {
+      padding: 24px 22px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid rgba(74, 144, 217, 0.2);
+      flex: 1;
+    }
+
+    .team-card-role {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .team-card-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .team-card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 4px;
+    }
+
+    /* ─── TOKEN EFFICIENCY ─── */
+    .token-rules {
+      margin-top: 48px;
+    }
+
+    .token-pre {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1.5px solid var(--card-border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 2;
+      overflow-x: auto;
+    }
+
+    .token-pre .arrow { color: var(--accent); }
+    .token-pre .rule { color: var(--muted); }
+    .token-pre .result { color: var(--text); }
+
+    .token-rtk {
+      margin-top: 32px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    .token-rtk a {
+      color: var(--accent);
+      border-bottom: 1px solid rgba(74, 144, 217, 0.3);
+      transition: border-color 0.15s;
+    }
+
+    .token-rtk a:hover { border-color: var(--accent); }
+
+    .benchmark-card {
+      margin-top: 40px;
+      border: 1.5px dashed var(--accent);
+      border-radius: 6px;
+      background: rgba(74, 144, 217, 0.03);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .benchmark-card-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .benchmark-card-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .benchmark-card-text strong {
+      display: block;
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* ─── ECOSYSTEM ─── */
+    .ecosystem-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .ecosystem-card {
+      border: 1.5px solid var(--card-border);
+      border-radius: 6px;
+      background: var(--card-bg);
+      padding: 28px 28px 32px;
+      transition: border-color 0.15s;
+    }
+
+    .ecosystem-card:hover { border-color: rgba(74, 144, 217, 0.5); }
+
+    .ecosystem-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .ecosystem-card-title a {
+      transition: color 0.15s;
+    }
+
+    .ecosystem-card-title a:hover { color: var(--accent); }
+
+    .ecosystem-card-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .ecosystem-note {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* ─── INSTALL ─── */
+    .install-blocks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .install-block-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1.5px solid var(--card-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .code-block-lang {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--subtle);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .code-block-dots { display: flex; gap: 6px; }
+    .code-block-dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--card-border);
+    }
+
+    .code-block pre {
+      padding: 20px 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.75);
+      overflow-x: auto;
+    }
+
+    .install-cta {
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 40px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-github {
+      font-size: 13px;
+      color: var(--accent);
+      border-bottom: 1px solid rgba(74, 144, 217, 0.3);
+      transition: border-color 0.15s;
+    }
+
+    .footer-github:hover { border-color: var(--accent); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .why-cards { grid-template-columns: 1fr; }
+      .workflow-handoffs { grid-template-columns: 1fr; }
+      .pipeline { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding: 0 20px 16px; }
+      .team-cards { flex-direction: column; align-items: center; }
+      .ecosystem-cards { grid-template-columns: 1fr; }
+      .install-blocks { grid-template-columns: 1fr; }
+      .hero-frame { padding: 60px 24px; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      .section { padding: 80px 0; }
+      .hero { min-height: auto; padding: 80px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-wordmark">Three Man Team</div>
+      <ul class="nav-links">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#team">The Team</a></li>
+        <li><a href="#token-efficiency">Token Efficiency</a></li>
+        <li><a href="#ecosystem">Goes Well With</a></li>
+        <li><a href="#install">Install</a></li>
+      </ul>
+      <a href="https://github.com/russelleNVy/three-man-team" class="nav-cta" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-frame">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="hero-eyebrow">AI Development Framework</div>
+    <h1 class="hero-headline">Three <span>Man</span> Team</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Structure for teams that ship.</p>
+
+    <div class="hero-actions">
+      <a href="#how-it-works" class="btn-primary">See how it works ↓</a>
+      <a href="https://github.com/russelleNVy/three-man-team" class="btn-ghost" target="_blank" rel="noopener">View on GitHub →</a>
+    </div>
+
+    <div class="hero-proof">
+      <span class="proof-item">v1.2.0</span>
+      <span class="proof-sep"></span>
+      <span class="proof-item">559 Stars</span>
+      <span class="proof-sep"></span>
+      <span class="proof-item">MIT License</span>
+      <span class="proof-sep"></span>
+      <span class="proof-item">Built in production</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEM ── -->
+<section id="problem" class="section">
+  <div class="container">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-headline">AI tools are powerful.<br>And undisciplined.</h2>
+    <p class="section-body">
+      AI coding tools are powerful but undisciplined. They read entire codebases when they need one function. They add features nobody asked for. They drift mid-task. They burn tokens on every session doing work that didn't need to happen.
+    </p>
+    <blockquote class="problem-quote">
+      <p>"The solution isn't a better prompt. It's a process."</p>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ── WHY THREE ── -->
+<section id="why" class="section section-grid">
+  <div class="section-grid-bg"></div>
+  <div class="container">
+    <div class="section-label">The Research</div>
+    <h2 class="section-headline">Three is not arbitrary.</h2>
+    <p class="section-body">
+      DeepMind research on multi-agent systems shows that structured role separation produces more reliable outputs than a single unconstrained agent. Specialization reduces drift. Handoffs force precision. Review creates accountability.
+    </p>
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="why-card-label">Role 01</div>
+        <div class="why-card-title">Architect</div>
+        <div class="why-card-desc">Owns the plan and the brief. Nothing gets built without a written specification. The single fixed point everything orients around.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-label">Role 02</div>
+        <div class="why-card-title">Builder</div>
+        <div class="why-card-desc">Reads the brief. Confirms the plan. Builds exactly what was specified — no more, no less. Hands off clean.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-label">Role 03</div>
+        <div class="why-card-title">Reviewer</div>
+        <div class="why-card-desc">Reviews against the brief, correctness, and standards. Will not pass work that isn't right. Nothing ships without a review.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORKFLOW ── -->
+<section id="how-it-works" class="section">
+  <div class="container">
+    <div class="section-label">The Sprint</div>
+    <h2 class="section-headline">Every step. Every time.</h2>
+
+    <div class="pipeline">
+
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-node-icon">💬</div>
+          <div class="pipeline-node-label">Plan</div>
+          <div class="pipeline-node-sub">Architect</div>
+        </div>
+        <div class="pipeline-owner">Project Owner</div>
+      </div>
+
+      <div class="pipeline-arrow"><div class="pipeline-arrow-line"></div></div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-node-icon">📋</div>
+          <div class="pipeline-node-label">Brief</div>
+          <div class="pipeline-node-sub">Architect</div>
+        </div>
+        <div class="pipeline-owner">Architect</div>
+      </div>
+
+      <div class="pipeline-arrow"><div class="pipeline-arrow-line"></div></div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-node-icon">⚙️</div>
+          <div class="pipeline-node-label">Build</div>
+          <div class="pipeline-node-sub">Builder</div>
+        </div>
+        <div class="pipeline-owner">Builder</div>
+      </div>
+
+      <div class="pipeline-arrow"><div class="pipeline-arrow-line"></div></div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-node-icon">🔍</div>
+          <div class="pipeline-node-label">Review</div>
+          <div class="pipeline-node-sub">Reviewer</div>
+        </div>
+        <div class="pipeline-owner">Reviewer</div>
+      </div>
+
+      <div class="pipeline-arrow"><div class="pipeline-arrow-line"></div></div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-node highlight">
+          <div class="pipeline-node-icon">🚀</div>
+          <div class="pipeline-node-label">Deploy</div>
+          <div class="pipeline-node-sub">Architect</div>
+        </div>
+        <div class="pipeline-owner">Architect</div>
+      </div>
+
+      <div class="pipeline-arrow"><div class="pipeline-arrow-line"></div></div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-node-icon">📝</div>
+          <div class="pipeline-node-label">Log</div>
+          <div class="pipeline-node-sub">Build Log</div>
+        </div>
+        <div class="pipeline-owner">Architect</div>
+      </div>
+
+    </div>
+
+    <div class="workflow-handoffs">
+      <div class="workflow-handoff">
+        <div class="workflow-handoff-num">HANDOFF 01</div>
+        <p>Architect plans the work and writes the brief. The brief is the contract — specific, scoped, unambiguous. Builder doesn't start without it.</p>
+      </div>
+      <div class="workflow-handoff">
+        <div class="workflow-handoff-num">HANDOFF 02</div>
+        <p>Builder reads the brief, posts a plan, and builds. When done, Builder writes the review request and hands off to Richard. Clean, documented, traceable.</p>
+      </div>
+      <div class="workflow-handoff">
+        <div class="workflow-handoff-num">HANDOFF 03</div>
+        <p>Reviewer clears it or sends it back with findings. Nothing skips this step. When Richard signs off, Architect deploys.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ── -->
+<section id="team" class="section section-grid">
+  <div class="section-grid-bg"></div>
+  <div class="container">
+    <div class="section-label">The Team</div>
+    <h2 class="section-headline">Three roles. One process.</h2>
+    <div class="team-cards">
+
+      <div class="team-card">
+        <img class="team-card-photo" src="../assets/arch.png" alt="Arch">
+        <div class="team-card-body">
+          <div class="team-card-role">Architect</div>
+          <div class="team-card-name">Arch</div>
+          <div class="team-card-desc">Plans the work, writes the brief, owns the deploy. The fixed point everything orients around.</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img class="team-card-photo" src="../assets/bob.png" alt="Bob">
+        <div class="team-card-body">
+          <div class="team-card-role">Builder</div>
+          <div class="team-card-name">Bob</div>
+          <div class="team-card-desc">Builds exactly what the brief says. Fast, precise, no ego. Hands it to Richard clean.</div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img class="team-card-photo" src="../assets/richard.png" alt="Richard">
+        <div class="team-card-body">
+          <div class="team-card-role">Reviewer</div>
+          <div class="team-card-name">Richard</div>
+          <div class="team-card-desc">Quiet until he speaks. Will not pass work that isn't right. Has seen what happens when corners get cut.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TOKEN EFFICIENCY ── -->
+<section id="token-efficiency" class="section section-grid">
+  <div class="section-grid-bg"></div>
+  <div class="container">
+    <div class="section-label">Token Efficiency</div>
+    <h2 class="section-headline">Less noise. More signal.</h2>
+    <p class="section-body">
+      Three Man Team bakes token discipline into every role. Each agent follows five rules that kill waste before it compounds across a session.
+    </p>
+
+    <div class="token-rules">
+      <div class="token-pre">
+<span class="rule">Is this in a skill or memory?</span>   <span class="arrow">→</span> <span class="result">Trust it. Skip the file read.</span>
+<span class="rule">Is this speculative?</span>            <span class="arrow">→</span> <span class="result">Kill the tool call.</span>
+<span class="rule">Can calls run in parallel?</span>      <span class="arrow">→</span> <span class="result">Parallelize them.</span>
+<span class="rule">Output > 20 lines you won't use?</span> <span class="arrow">→</span> <span class="result">Route to subagent.</span>
+<span class="rule">About to restate what user said?</span> <span class="arrow">→</span> <span class="result">Delete it.</span>
+      </div>
+    </div>
+
+    <p class="token-rtk">
+      For bash output compression, RTK is a separate tool that compresses find, ls, grep output before it reaches Claude's context. Learn more at <a href="https://github.com/rtk-ai/rtk" target="_blank" rel="noopener">github.com/rtk-ai/rtk</a>.
+    </p>
+
+    <div class="benchmark-card">
+      <div class="benchmark-card-icon">📊</div>
+      <div class="benchmark-card-text">
+        <strong>Benchmark data coming in Step 2.</strong>
+        Token efficiency measurements from a controlled A/B test — structured Three Man Team workflow vs. baseline unstructured session — will appear here once Test B completes.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ECOSYSTEM ── -->
+<section id="ecosystem" class="section">
+  <div class="container">
+    <div class="section-label">Goes Well With</div>
+    <h2 class="section-headline">Not required. Just good.</h2>
+    <div class="ecosystem-cards">
+
+      <div class="ecosystem-card">
+        <div class="ecosystem-card-title">
+          <a href="https://github.com/ryoppippi/ccusage" target="_blank" rel="noopener">ccusage ↗</a>
+        </div>
+        <div class="ecosystem-card-desc">
+          Tracks your Claude Code token usage and costs by session, day, or billing window. Know exactly what you're spending.
+        </div>
+      </div>
+
+      <div class="ecosystem-card">
+        <div class="ecosystem-card-title">
+          <a href="https://github.com/Vvkmnn/claude-historian-mcp" target="_blank" rel="noopener">claude-historian-mcp ↗</a>
+        </div>
+        <div class="ecosystem-card-desc">
+          An MCP server that lets Claude search your past conversation history. Find solutions you've already solved without starting from scratch.
+        </div>
+      </div>
+
+    </div>
+    <p class="ecosystem-note">Three Man Team works without either. These just make the experience better.</p>
+  </div>
+</section>
+
+<!-- ── INSTALL ── -->
+<section id="install" class="section section-grid">
+  <div class="section-grid-bg"></div>
+  <div class="container">
+    <div class="section-label">Quick Start</div>
+    <h2 class="section-headline">Up and running in two steps.</h2>
+
+    <div class="install-blocks">
+
+      <div>
+        <div class="install-block-label">Per-project install</div>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">bash</span>
+            <div class="code-block-dots"><span></span><span></span><span></span></div>
+          </div>
+          <pre><code>cd your-project
+git clone https://github.com/russelleNVy/three-man-team .claude/skills/three-man-team
+cd .claude/skills/three-man-team && ./setup</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <div class="install-block-label">Global install</div>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">bash</span>
+            <div class="code-block-dots"><span></span><span></span><span></span></div>
+          </div>
+          <pre><code>git clone https://github.com/russelleNVy/three-man-team ~/.claude/skills/three-man-team
+cd ~/.claude/skills/three-man-team && ./setup</code></pre>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="install-cta">
+      <a href="https://github.com/russelleNVy/three-man-team" class="btn-primary" target="_blank" rel="noopener">Clone on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-copy">Three Man Team · MIT License · Built by <a href="https://russellenvy.com" target="_blank">Russell Aaron</a></span>
+      <a href="https://github.com/russelleNVy/three-man-team" class="footer-github" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
