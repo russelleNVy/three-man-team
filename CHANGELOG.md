@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.2.0 — 2026-04-20
+
+- RTK install block: dropped curl command, now links to github.com/rtk-ai/rtk README (fixes private fork URL)
+- Windows support: added Windows section to INSTALL.md — Git Bash/WSL for setup script, manual copy fallback, RTK not supported on Windows
+- RTK install note in new-setup.md clarifies macOS/Linux only; Windows users can skip
+- handoff/ paths: all agent files now reference handoff/ARCHITECT-BRIEF.md, handoff/REVIEW-REQUEST.md, etc. — prevents files landing in project root
+- BUILD-LOG discipline: added Anti-Drift rule requiring BUILD-LOG updates immediately on any decision, not only at deploy
+- Model assignment: new-setup.md adds 4th setup question for per-agent model selection; ARCHITECT.md briefing sections now document the `model` parameter with available Claude model IDs
+
 ## v1.1.0 — 2026-04-03
 
 - Added `new-setup.md` — guided first-session onboarding handled by Arch: team naming, project context file, RTK install
