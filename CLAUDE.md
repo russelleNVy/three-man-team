@@ -19,9 +19,7 @@ Do not re-read files already in context this session.
 
 1. Load your token-optimizer skill if you have one — first, before anything else.
 2. Check `SESSION-CHECKPOINT.md` — if active and recent, read it. That is your state.
-3. Load your role file. Path depends on your setup:
-   - Cloned into `agents/` → `agents/ARCHITECT.md` · `agents/BUILDER.md` · `agents/REVIEWER.md`
-   - Copied to project root → `ARCHITECT.md` · `BUILDER.md` · `REVIEWER.md`
+3. Load your role file — copied to project root → `ARCHITECT.md` · `BUILDER.md` · `REVIEWER.md`
 4. If no checkpoint — Architect reads `BUILD-LOG.md` + `ARCHITECT-BRIEF.md` only.
 
 **Project Owner role is set by the human. Do not ask.**
