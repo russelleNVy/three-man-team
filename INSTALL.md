@@ -1,5 +1,7 @@
 # Installing Three Man Team
 
+**How the team runs:** Three Man Team uses one Claude Code session. Arch is your main agent. Bob and Richard are subagents — Arch spins them up via Claude Code's Agent tool. You don't need three separate windows.
+
 For the full quick start, see [README.md](README.md).
 
 ---
@@ -29,7 +31,7 @@ cd ~/.claude/skills/three-man-team && ./setup
 Then for each project:
 
 ```bash
-cp -r ~/.claude/skills/three-man-team/templates/project-folder/* /path/to/your/project/
+cp -r ~/.claude/skills/three-man-team/templates/project-folder/. /path/to/your/project/
 cd /path/to/your/project
 ```
 

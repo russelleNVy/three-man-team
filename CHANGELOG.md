@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.2 — 2026-05-03
+
+- Fix: token-optimization.md now ships with every install — added to `templates/project-folder/.claude/skills/` so the `@` auto-load reference works out of the box
+- Fix: CLAUDE.md creation instructions in `new-setup.md` now include `@.claude/skills/token-optimization.md` for both new and existing project context files
+- Fix: install `cp` command changed from `*` to `.` in setup script, README, and INSTALL.md — hidden directories (`.claude/`) are now copied correctly
+- Docs: added "one session, three roles" callout to README Quick Start and INSTALL.md — clarifies that Bob and Richard are subagents within a single Claude Code session, not separate windows
+- Docs: `new-setup.md` now shows the "one session" model explanation to the Project Owner during first-time setup
+
 ## v1.2.0 — 2026-04-20
 
 - RTK install block: dropped curl command, now links to github.com/rtk-ai/rtk README (fixes private fork URL)

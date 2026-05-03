@@ -4,6 +4,10 @@
 # Claude Code local dev config — not for users
 .claude/
 
+# Override — template .claude/ must ship with installs
+!templates/project-folder/.claude/
+!templates/project-folder/.claude/**
+
 # Internal docs — not for public commit
 three-man-team-build-brief.md
 INTERNAL-BRIEF.md

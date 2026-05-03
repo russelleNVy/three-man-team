@@ -35,6 +35,8 @@ The roles map to how real software ships:
 
 ## Quick Start
 
+**How the team runs:** Three Man Team uses one Claude Code session. Arch is your main agent. When work is ready to build, Arch spins up Bob as a subagent via Claude Code's Agent tool. When Bob is done, Arch spins up Richard the same way. You don't open three windows — everything runs inside your single session.
+
 Choose your install type:
 
 ---
@@ -79,7 +81,7 @@ That's the one-time install. Setup will confirm everything is in place.
 **Step 2 — Copy agent files into your project, then spin up Claude**
 
 ```bash
-cp -r ~/.claude/skills/three-man-team/templates/project-folder/* /path/to/your/project/
+cp -r ~/.claude/skills/three-man-team/templates/project-folder/. /path/to/your/project/
 cd /path/to/your/project
 ```
 
