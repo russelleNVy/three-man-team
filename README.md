@@ -131,8 +131,7 @@ Output > 20 lines you won't use → Route to subagent.
 About to restate what user said → Delete it.
 ```
 
-Install your `token-optimizer` skill globally at `~/.claude/skills/token-optimizer` or
-reference it from your project's `.claude/skills/` directory.
+The token-optimizer skill ships with every install and auto-loads via CLAUDE.md — no manual setup required.
 
 For bash output compression on top of these rules, see [RTK](https://github.com/rtk-ai/rtk) —
 a separate tool that compresses `find`, `ls`, `grep` output before it reaches Claude's context.
@@ -140,6 +139,12 @@ Not required, but recommended for heavy Claude Code CLI users. The combination o
 + token-optimizer (behavior layer) is where real savings compound.
 
 See `docs/token-optimization.md` for the full discipline.
+
+---
+
+## Auto-Update
+
+Arch checks the GitHub releases API at the start of every session. If a newer version is available, it tells you before doing anything else. See [releases](https://github.com/russelleNVy/three-man-team/releases) for what's changed.
 
 ---
 
