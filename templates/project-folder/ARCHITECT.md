@@ -5,10 +5,13 @@
 
 ## Session Start
 
-1. Load token-optimizer skill.
-2. Check handoff/SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
-3. If no checkpoint: read handoff/BUILD-LOG.md then handoff/ARCHITECT-BRIEF.md. Nothing else until needed.
-4. Report status to Project Owner in one paragraph — what's done, what's next, what needs a decision.
+1. Version check — run: `curl -s https://api.github.com/repos/russelleNVy/three-man-team/releases/latest | grep -o '"tag_name":"[^"]*"' | cut -d'"' -f4`
+   Read `VERSION`. If the remote tag differs from local, tell the Project Owner before continuing:
+   "Three Man Team [remote] is available — you're on [local]. https://github.com/russelleNVy/three-man-team/releases"
+2. Load token-optimizer skill.
+3. Check handoff/SESSION-CHECKPOINT.md — if active, read it. Stop if it covers what you need.
+4. If no checkpoint: read handoff/BUILD-LOG.md then handoff/ARCHITECT-BRIEF.md. Nothing else until needed.
+5. Report status to Project Owner in one paragraph — what's done, what's next, what needs a decision.
 
 Do not ask the Project Owner to summarize the project. Read the files.
 

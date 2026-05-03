@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.3 — 2026-05-03
+
+- Auto-update check: Arch now checks the GitHub releases API at session start and notifies the Project Owner if a newer version is available
+- Added `VERSION` file to `templates/project-folder/` — tracks installed version for comparison
+
 ## v1.2.2 — 2026-05-03
 
 - Fix: token-optimization.md now ships with every install — added to `templates/project-folder/.claude/skills/` so the `@` auto-load reference works out of the box
