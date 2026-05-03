@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  By <a href="https://russellenvy.com">Russell Aaron</a>
+  By <a href="https://russellenvy.com">RUSSΞLL AARØN</a>
 </p>
 
 ---
