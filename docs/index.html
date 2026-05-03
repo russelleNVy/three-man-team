@@ -576,6 +576,33 @@
       margin-top: 4px;
     }
 
+    /* ─── ONE SESSION NOTE ─── */
+    .one-session-note {
+      margin-top: 48px;
+      border: 1.5px solid var(--card-border);
+      border-radius: 6px;
+      background: var(--card-bg);
+      padding: 24px 28px;
+    }
+
+    .one-session-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .one-session-note p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .one-session-note strong { color: var(--text); }
+
     /* ─── TOKEN EFFICIENCY ─── */
     .token-rules {
       margin-top: 48px;
@@ -838,7 +865,7 @@
     </div>
 
     <div class="hero-proof">
-      <span class="proof-item">v1.2.1</span>
+      <span class="proof-item">v1.2.3</span>
       <span class="proof-sep"></span>
       <span class="proof-item">648 Stars</span>
       <span class="proof-sep"></span>
@@ -980,6 +1007,12 @@
         <p>Reviewer clears it or sends it back with findings. Nothing skips this step. When Richard signs off, Architect deploys.</p>
       </div>
     </div>
+
+    <div class="one-session-note">
+      <div class="one-session-label">How the team runs</div>
+      <p><strong>One Claude Code session. Three roles.</strong> You don't open three windows. Arch runs in your main session. When work is ready, Arch spins up Bob and Richard as subagents via Claude Code's Agent tool. All three roles happen in one place — handoff files on disk are how they communicate.</p>
+    </div>
+
   </div>
 </section>
 
@@ -1029,7 +1062,7 @@
     <div class="section-label">Token Efficiency</div>
     <h2 class="section-headline">Less noise. More signal.</h2>
     <p class="section-body">
-      Three Man Team bakes token discipline into every role. Each agent follows five rules that kill waste before it compounds across a session.
+      Three Man Team bakes token discipline into every role. Each agent follows five rules that kill waste before it compounds across a session. The token-optimizer skill ships with every install and auto-loads via CLAUDE.md — no manual setup required.
     </p>
 
     <div class="token-rules">
@@ -1124,6 +1157,7 @@ cd ~/.claude/skills/three-man-team && ./setup</code></pre>
 
     <div class="install-cta">
       <a href="https://github.com/russelleNVy/three-man-team" class="btn-primary" target="_blank" rel="noopener">Clone on GitHub →</a>
+      <p style="margin-top: 20px; font-size: 13px; color: var(--muted);">Arch checks for new releases automatically at the start of every session. See <a href="https://github.com/russelleNVy/three-man-team/releases" target="_blank" rel="noopener" style="color: var(--accent); border-bottom: 1px solid rgba(74,144,217,0.3);">releases →</a></p>
     </div>
   </div>
 </section>
